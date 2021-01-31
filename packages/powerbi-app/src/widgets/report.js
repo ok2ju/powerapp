@@ -9,6 +9,6 @@ window.renderPowerBIChart = (containerId, { chartId, ...rest }) => {
   )
 }
 
-window.unmountRestaurant = containerId => {
+window.unmountPowerBIChart = containerId => {
   ReactDOM.unmountComponentAtNode(document.getElementById(containerId))
 }

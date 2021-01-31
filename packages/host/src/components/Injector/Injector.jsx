@@ -1,5 +1,6 @@
 /* globals fetch */
 import React, { useEffect } from 'react'
+import { Section } from './styles'
 
 const Injector = ({ id, name, host, ...rest }) => {
   useEffect(() => {
@@ -31,7 +32,7 @@ const Injector = ({ id, name, host, ...rest }) => {
   }
 
   return (
-    <section id={`${name}-container-${id}`} />
+    <Section id={`${name}-container-${id}`} />
   )
 }
 

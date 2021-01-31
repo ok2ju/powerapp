@@ -1,5 +1,7 @@
 # Powerapp
 
+This is a multiapp PoC. One window = several applications.
+
 ## Requirements
 
 1. Every application should be standalone and work independently;
