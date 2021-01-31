@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Chart from '../components/Chart'
+import ChartRequester from '../pages/Viewer/ChartRequester'
 
-window.renderPowerBIChart = (containerId) => {
+window.renderPowerBIChart = (containerId, { chartId, ...rest }) => {
   ReactDOM.render(
-    <Chart />,
+    <ChartRequester chartId={chartId} {...rest} />,
     document.getElementById(containerId)
   )
 }

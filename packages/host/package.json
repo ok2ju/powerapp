@@ -4,12 +4,21 @@
   "description": "",
   "author": "ok2ju <soulSpringg@gmail.com>",
   "license": "ISC",
+  "standard": {
+    "ignore": [
+      "build",
+      "node_modules/**"
+    ]
+  },
   "scripts": {
-    "lind": "standard"
+    "lint": "standard",
+    "start": "webpack serve --config ./webpack/dev.js",
+    "build": "webpack --config ./webpack/prod.js"
   },
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {

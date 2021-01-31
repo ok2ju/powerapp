@@ -1,12 +1,15 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import Header from '../../components/Header'
-import Chart from '../../components/Chart'
+import ChartRequester from './ChartRequester'
 
 const Viewer = () => {
+  const { id: chartId } = useParams()
+
   return (
     <>
       <Header />
-      <Chart />
+      <ChartRequester chartId={chartId} />
     </>
   )
 }

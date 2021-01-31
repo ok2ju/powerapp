@@ -10,8 +10,7 @@ const dir = {
 
 const base = {
   entry: {
-    bundle: './src/index',
-    widget: './src/widgets/report'
+    bundle: './src/index'
   },
   resolve: {
     extensions: ['.js', '.jsx'],

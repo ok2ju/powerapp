@@ -1,8 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Viewer from './pages/Viewer'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import HomePage from './pages/Home'
+import ViewerPage from './pages/Viewer'
 
 ReactDOM.render(
-  <Viewer />,
+  <Router>
+    <Switch>
+      <Route exact path='/'>
+        <Redirect to='/home' />
+      </Route>
+      <Route exact path='/home' component={HomePage} />
+      <Route exact path='/chart/:id/view' component={ViewerPage} />
+    </Switch>
+  </Router>,
   document.getElementById('powerbi-app')
 )

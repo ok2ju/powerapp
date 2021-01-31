@@ -8,8 +8,7 @@ const config = Object.assign({}, base, {
   output: {
     chunkFilename: 'scripts/[name].js',
     filename: 'scripts/[name].js',
-    path: path.resolve(__dirname, 'devel'),
-    publicPath: '/'
+    path: path.resolve(__dirname, 'devel')
   },
   module: { rules },
   plugins: [
@@ -25,12 +24,9 @@ const config = Object.assign({}, base, {
     contentBase: path.resolve(__dirname, 'devel'),
     publicPath: '/',
     historyApiFallback: true,
-    port: 8001,
+    port: 8002,
     inline: true,
-    hot: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
+    hot: true
   }
 })
 
