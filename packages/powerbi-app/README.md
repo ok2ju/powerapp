@@ -1,1 +1,1 @@
-# `powerbi-app`
+# Powerbi react application

@@ -1,1 +1,1 @@
-# `host`
+# Host application
