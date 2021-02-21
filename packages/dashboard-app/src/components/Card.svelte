@@ -1,38 +1,33 @@
 <script>
+  export let id
   export let title
   export let description
+  export let onTitleClick
 
   const getAbbr = (title) => title.charAt(0)
 
-  const handleClick = (event) => {
-    event.preventDefault()
-    console.log('Clicked on the card', title)
+  const handleTitleClick = () => {
+    onTitleClick(id)
   }
 </script>
 
-<div class="card">
-  <a href="/" on:click={handleClick}>
-    <div class="card-inner">
-      <div class="card__body">
-        <span class="card__abbr">{getAbbr(title)}</span>
-      </div>
-      <div class="card__footer">
-        <h1 class="card__title">{title}</h1>
-        <p class="card__description">{description}</p>
-      </div>
+<div class="card" on:click={handleTitleClick}>
+  <div class="card-inner">
+    <div class="card__body">
+      <span class="card__abbr">{getAbbr(title)}</span>
     </div>
-  </a>
+    <div class="card__footer">
+      <h1 class="card__title">{title}</h1>
+      <p class="card__description">{description}</p>
+    </div>
+  </div>
 </div>
 
 <style>
   .card {
+    cursor: pointer;
     width: 16.666666666666667%;
     padding: 8px;
-  }
-
-  .card a {
-    text-decoration: none;
-    color: initial;
   }
 
   .card-inner {
@@ -54,7 +49,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 40px;
-    font-weight: 700;
+    font-weight: 100;
   }
 
   .card__footer {
@@ -69,7 +64,7 @@
 
   .card__title {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     margin: 0 0 4px 0;
   }
 
