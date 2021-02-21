@@ -1,50 +1,59 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import GridLayout from 'react-grid-layout'
+import { Resizable } from 're-resizable'
 import { getWidgets } from '../../selectors/config'
 import Injector from '../../components/Injector'
+import { Container, Row } from './styles'
 
-const generateLayout = (colsNumber, widgets) => {
-  const layout = []
-  const defaultProps = { w: 6, h: 2 }
-  let xCounter = 0
-  let yCounter = 0
+const layoutBoxStyles = {
+  border: '1px solid orange'
+}
 
-  for (let i = 0; i < widgets.length; i++) {
-    const widgetConfig = widgets[i]
+const getLayout = (widgets, size) => {
+  const count = widgets.length || 0
 
-    const widgetGridConfig = Object.assign({}, defaultProps, {
-      i: widgetConfig.id,
-      x: xCounter + (layout[i - 1]?.w || 0),
-      y: yCounter
-    })
+  let index = 0
+  let resIndex = 0
+  const res = []
 
-    layout.push(widgetGridConfig)
-
-    if (xCounter === colsNumber) {
-      yCounter++
-      xCounter = 0
-    }
+  while (index < count) {
+    res[resIndex++] = widgets.slice(index, size)
+    index = index + size
   }
-  return layout
+
+  return res
 }
 
 const View = () => {
   const widgets = useSelector(getWidgets)
-  const layout = generateLayout(12, widgets)
+  const maxRowItems = 3
+  const rows = getLayout(widgets, maxRowItems)
 
   return (
     <div>
       <h1>View page</h1>
       {widgets.length > 0 && (
-        <GridLayout layout={layout} cols={12} width={1200}>
-          {widgets.map(({ id, name, host, params }, index) => (
-            <div key={id}>
-              <Injector id={id} name={name} host={host} {...params} />
-            </div>
+        <Container>
+          {rows.map((row, index) => (
+            <Row key={index}>
+              {row.map(({ id, name, host, params }, idx) => (
+                <Resizable
+                  key={idx}
+                  style={layoutBoxStyles}
+                  defaultSize={{
+                    width: `${100 / maxRowItems}%`,
+                    height: 200
+                  }}
+                  minWidth='1'
+                  enable={{ bottomRight: true }}
+                >
+                  <Injector id={id} name={name} host={host} {...params} />
+                </Resizable>
+              ))}
+            </Row>
           ))}
-        </GridLayout>
+        </Container>
       )}
       {widgets.length === 0 && (
         <span>
