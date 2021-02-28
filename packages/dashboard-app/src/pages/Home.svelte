@@ -1,32 +1,12 @@
 <script>
+  import { onMount } from 'svelte'
   import { navigate } from 'svelte-routing'
   import Card from '../components/Card.svelte'
+  import { store, fetchCharts } from '../stores/charts'
 
-  const cards = [{
-    id: 1,
-    title: 'Title#1',
-    description: 'Description#1'
-  }, {
-    id: 2,
-    title: 'Title#2',
-    description: 'Description#2'
-  }, {
-    id: 3,
-    title: 'Title#3',
-    description: 'Description#3'
-  }, {
-    id: 4,
-    title: 'Title#4',
-    description: 'Description#4'
-  }, {
-    id: 5,
-    title: 'Title#5',
-    description: 'Description#5'
-  }, {
-    id: 6,
-    title: 'Title#6',
-    description: 'Description#6'
-  }]
+  onMount(() => {
+    store.dispatch(fetchCharts())
+  })
 
   const openChart = (chartId) => {
     navigate(`/chart/${chartId}`)
@@ -37,13 +17,15 @@
   <h1>Hello to Dashboard app!</h1>
   <p>Here you can review some charts examples.</p>
   <section class="cards-list">
-    {#each cards as card}
+    {#each $store.charts as card}
       <Card
         id={card.id}
         title={card.title}
         description={card.description}
         onTitleClick={openChart}
       />
+    {:else}
+      <p>Loading...</p>
     {/each}
   </section>
 </main>
